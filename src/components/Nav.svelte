@@ -17,14 +17,6 @@
           <span class="badge badge-sm indicator-item">{$CartStore.length}</span>
         </div>
       </label>
-      <!-- <div tabindex="0" class="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow">
-        <div class="card-body">
-          <span class="font-bold text-lg">{$CartStore.length} item(s) in cart</span>
-          <div class="card-actions">
-            <a href="#/cart" class="btn btn-primary btn-block">View cart</a>
-          </div>
-        </div>
-      </div> -->
     </div>
   </div>
 </div>

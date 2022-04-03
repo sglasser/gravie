@@ -2,8 +2,8 @@
 	import Router from 'svelte-spa-router';
 	import routes from './routes';
 	import Nav from './components/Nav.svelte';
-
 </script>
+
 <div class='container mx-auto'>
 	<nav>
 		<Nav/>
