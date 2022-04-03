@@ -2,7 +2,7 @@
   import { CartStore } from "../store";
 
   const remove = (item) => {
-    const updatedCart = $CartStore.filter(cartItem => cartItem.guid.__cdata !== item.guid.__cdata)
+    const updatedCart = $CartStore.filter(cartItem => cartItem.guid !== item.guid)
     CartStore.set(updatedCart);
   }
 
@@ -26,7 +26,7 @@
         {#each $CartStore as item}
           <tr>
             <td>1</td>
-            <td>{item.name?.__cdata}</td>
+            <td>{item.name}</td>
             <td>$10.00</td>
             <td>$10.00</td>
             <td>

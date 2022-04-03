@@ -1,12 +1,13 @@
 <script>
   import { HttpService } from "../services/HttpService";
   import { GameSearchResultsStore } from "../store";
-  import { SearchTerm } from "../store";
+  import { SearchTerm, IsLoading } from "../store";
   import GameCard from "./GameCard.svelte";
 
 
   let searchString = "";
   let searchDirty = false;
+  let isSearching = false;
   let timer;
 
   const debounce = (text) => {
@@ -16,7 +17,7 @@
       searchString = text;
       SearchTerm.set(searchString);
       HttpService.getMovies(searchString);
-    }, 1000);
+    }, 500);
   };
 </script>
 
@@ -32,7 +33,9 @@
 </div>
 
 <div class="flex flex-wrap">
-  {#if $GameSearchResultsStore.length}
+  {#if $IsLoading}
+    <img src='images/spinner.gif' alt='loading results'/>
+  {:else if $GameSearchResultsStore.length}
     {#each $GameSearchResultsStore as game}
       <GameCard game={game}></GameCard>
     {/each}

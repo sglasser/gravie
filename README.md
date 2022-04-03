@@ -5,7 +5,6 @@ Simple Search/Cart project.
 
 - 
 
-
 ## To Run Project
 
 Install the dependencies...
