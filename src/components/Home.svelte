@@ -10,6 +10,8 @@
   let isSearching = false;
   let timer;
 
+  // TODO add pagination or infinite scroll to results
+  
   const debounce = (text) => {
     clearTimeout(timer);
     searchDirty = true;
@@ -32,17 +34,21 @@
   />
 </div>
 
-<div class="flex flex-wrap">
-  {#if $IsLoading}
+
+{#if $IsLoading}
+  <div class="mt-3">
     <img src='images/spinner.gif' alt='loading results'/>
-  {:else if $GameSearchResultsStore.length}
+  </div>  
+{:else if $GameSearchResultsStore.length}
+  <div class="mt-3 flex flex-wrap">
     {#each $GameSearchResultsStore as game}
       <GameCard game={game}></GameCard>
     {/each}
-  {:else if searchDirty }
-    <div class="mt-3">
-      <h3>No results found</h3>
-    </div>   
-  {/if}
-</div>
+  </div>
+{:else if searchDirty }
+  <div class="mt-3">
+    <h3>No results found</h3>
+  </div>   
+{/if}
+
 

@@ -1,6 +1,4 @@
 import { GameSearchResultsStore } from '../store';
-import data from '../gameData';
-import { get } from 'svelte/store';
 import { IsLoading } from '../store';
 
 export const HttpService = {
@@ -15,6 +13,8 @@ export const HttpService = {
 
         IsLoading.set(true);
 
+        // TODo handle pagination...right now returns 100 results
+        // TODO move url to config
         const url = `https://us-central1-gravie.cloudfunctions.net/search?search=${searchString}`;
 
         const result = await fetch(url, {method: "GET", headers: {

@@ -5,7 +5,7 @@ const cors = require('cors')({origin: "*"});
 const fetch = require('node-fetch');
 
 exports.search = functions.https.onRequest(async (request, response) => {
-  functions.logger.info("Doing a search", {structuredData: true});
+  functions.logger.info("Starting a search", {structuredData: true});
   return cors(request, response, async () => {
     if(request.method !== 'GET') {
       return response.status(401).json({
@@ -13,9 +13,12 @@ exports.search = functions.https.onRequest(async (request, response) => {
       })
     }
     try {
+      // TOD should validate if search parameter was sent
       const searchTerm = request.query?.search;
+
       // TODO api key should be in secrets manager. I couldn't get it to work correctly so left it here for now.
-      const url = `https://www.giantbomb.com/api/games/?filter=name:${searchTerm}&field_list=name,description,image,guid&format=json&api_key=d0ede037ba952980a7051b28c0a7ad15baf6197b`;
+      // TODO also probably want to add limit and offset for search
+      const url = `https://www.giantbomb.com/api/games/?filter=name:${searchTerm}&sort=name:asc&field_list=name,deck,image,guid&format=json&api_key=d0ede037ba952980a7051b28c0a7ad15baf6197b`;
   
       const rawResult = await fetch(
         url, {
