@@ -11,14 +11,13 @@
   let timer;
 
   // TODO add pagination or infinite scroll to results
-  
+
   const debounce = (text) => {
     clearTimeout(timer);
     searchDirty = true;
+    SearchTerm.set(text);
     timer = setTimeout(() => {
-      searchString = text;
-      SearchTerm.set(searchString);
-      HttpService.getMovies(searchString);
+      HttpService.getMovies(text);
     }, 500);
   };
 </script>
